@@ -1,17 +1,11 @@
 import os
 import json
-import tqdm
 import time
-import threading
 import numpy as np
 import pandas as pd
 from datetime import datetime
-from IPython import embed
 
 import utils.kube as kube_utils
-
-#import sys
-#sys.path.insert(1, '/home/packard2700/autoscale-bandit')
 
 class LoadGenerator(object):
     def __init__(self, host, locustfile, duration=25, csv_path='logs/scratch/cola_lg', 

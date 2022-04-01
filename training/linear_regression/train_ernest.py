@@ -292,12 +292,10 @@ class ErnestTrainer(object):
         # Create subfolder for each rps value we train on.
         for rps in self.train_config.train_rps:
             if not os.path.exists(os.path.join(self.policy_path, str(rps))):
-	            os.mkdir(os.path.join(self.policy_path, str(rps)))
+                os.mkdir(os.path.join(self.policy_path, str(rps)))
             if not os.path.exists(os.path.join(self.bandit_path, str(rps))):
                 os.mkdir(os.path.join(self.bandit_path, str(rps)))
         return
-
-
 
 
 def _construct_objective(covariance_matrices, lambdas):

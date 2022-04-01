@@ -121,7 +121,7 @@ class EvalConfig(object):
     def __init__(self, name, services, deployments, cpu_requests, mem_requests, 
                 host, locustfile, cluster_name, project_name, zone, node_pool, min_nodes, max_nodes,
                 application, rps_rates, cpu_policies, bandit_policy, pod_filter, train_config_path, duration, 
-                num_iters, wait_time, reset_cluster, autoscale_path='', add_nodes=0, second_context=None):
+                num_iters, wait_time, reset_cluster, autoscale_path='', second_context=None):
         """
         Evaluation configuration for learned autoscaling policy.
 
@@ -187,5 +187,4 @@ class EvalConfig(object):
         self.num_iters = num_iters
         self.wait_time = wait_time
         self.reset_cluster = reset_cluster
-        self.add_nodes = add_nodes
 

@@ -1,5 +1,4 @@
 from utils.config import Config, EvalConfig, TrainConfig
-from microservices.launch_apps import launch_application
 
 ################################################## 
 # Application
@@ -103,7 +102,6 @@ eval_cfg_ramp = EvalConfig(
                             deployments=cfg.deployments,
                             cpu_requests=600,
                             mem_requests=2000,
-                            add_nodes = 4,
 
                             host=cfg.host,
                             locustfile='load_generator/locustfiles/sockshop/default.py',
@@ -134,7 +132,6 @@ eval_cfg_ramp_oos = EvalConfig(
                             deployments=cfg.deployments,
                             cpu_requests=600,
                             mem_requests=2000,
-                            add_nodes = 4,
 
                             host=cfg.host,
                             locustfile='load_generator/locustfiles/sockshop/default.py',
@@ -165,7 +162,6 @@ eval_cfg_ramp_hilo = EvalConfig(
                             deployments=cfg.deployments,
                             cpu_requests=600,
                             mem_requests=2000,
-                            add_nodes = 4,
 
                             host=cfg.host,
                             locustfile='load_generator/locustfiles/sockshop/default.py',

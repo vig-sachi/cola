@@ -1,5 +1,4 @@
 from utils.config import Config, EvalConfig, TrainConfig
-from microservices.launch_apps import launch_application
 
 ################################################## 
 # Application
@@ -205,7 +204,6 @@ eval_cfg_ramp = EvalConfig(
                             deployments=cfg.deployments,
                             cpu_requests=600,
                             mem_requests=2000,
-                            add_nodes = 14,
 
                             host=cfg.host,
                             locustfile='load_generator/locustfiles/trainticket/default.py',
@@ -236,7 +234,6 @@ eval_cfg_ramp_oos = EvalConfig(
                             deployments=cfg.deployments,
                             cpu_requests=600,
                             mem_requests=2000,
-                            add_nodes = 14,
 
                             host=cfg.host,
                             locustfile='load_generator/locustfiles/trainticket/default.py',

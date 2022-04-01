@@ -132,12 +132,12 @@ class UCB_Bandit:
         
         # Reset reward stats.
         self.mean_reward = 0
-        self.reward = np.zeros(iters)
+        self.reward = np.zeros(self.iters)
         
         # Reset arm stats.
         self.k_reward = np.zeros(self.k)
-        self.k_latency = np.zeros(k)
-        self.k_failures = np.zeros(k)
+        self.k_latency = np.zeros(self.k)
+        self.k_failures = np.zeros(self.k)
         
         return
 

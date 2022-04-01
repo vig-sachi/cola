@@ -11,6 +11,10 @@ class COLA(object):
         self.train_config = train_config
         self.eval_config = eval_config
         self.auth = auth
+
+        # Create logging directories if they do not exist.
+        self.make_dirs()
+
         return
 
     def create_cluster(self):
@@ -51,4 +55,18 @@ class COLA(object):
         return
     
     def inference_autoscaler(self):
+        return
+
+    def make_dirs(self):
+
+        for directory in ['logs', 'logs/scratch']:
+            path = os.getcwd() + directory
+
+            # Check whether the specified path exists or not
+            isExist = os.path.exists(path)
+
+            if not isExist:
+                # Create a new directory because it does not exist 
+                os.makedirs(path)
+
         return
