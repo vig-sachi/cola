@@ -1,26 +1,21 @@
 import os
-import json
+import sys
+sys.path.insert(1, os.getcwd())
+
 import time
-import copy
 import pickle
 import random
 import itertools
 import logging
 import numpy as np
-import matplotlib.pyplot as plt
-from tqdm import tqdm
 import cvxpy as cvx
-from IPython import embed
-import scipy
 from scipy.optimize import nnls
+import sklearn.linear_model.LinearRegression as LinearRegression
 
-
-from utils import kube_utils, cluster_utils, hpa_utils
-from training.bandit_algo import UCB_Bandit
-from load_generator.locust_loadgen import LoadGenerator
-from microservices.launch_apps import launch_application
-from inference.cloud_metrics import CloudMetrics
-
+import utils.kube as kube_utils
+import utils.cluster as cluster_utils
+from utils.launch_apps import launch_application
+from utils.locust_loadgen import LoadGenerator
 
 logging.basicConfig(filename='logs/training.log',
                             filemode='a',

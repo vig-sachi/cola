@@ -1,28 +1,21 @@
 import os
-import json
+import sys
+sys.path.insert(1, os.getcwd())
+
 import time
-import copy
 import pickle
-import random
 import logging
 import numpy as np
 from copy import deepcopy
-import matplotlib.pyplot as plt
-from tqdm import tqdm
-import cvxpy as cvx
-from IPython import embed
-import scipy
-from scipy.optimize import nnls
 
-from dqn.ddpg import DDPG
-from dqn.evaluator import Evaluator
+from ddpg.ddpg import DDPG
+from ddpg.evaluator import Evaluator
 
-from utils import kube_utils, cluster_utils, hpa_utils
-from utils.kube_utils import get_current_deployments
-from training.bandit_algo import UCB_Bandit
-from load_generator.locust_loadgen import LoadGenerator
-from microservices.launch_apps import launch_application
-from inference.cloud_metrics import CloudMetrics
+import utils.kube as kube_utils
+import utils.cluster as cluster_utils
+from utils.kube import get_current_deployments
+from utils.locust_loadgen import LoadGenerator
+from utils.launch_apps import launch_application
 
 
 logging.basicConfig(filename='logs/training.log',
@@ -301,7 +294,7 @@ class DQNTrainer(object):
         # Create subfolder for each rps value we train on.
         for rps in self.train_config.train_rps:
             if not os.path.exists(os.path.join(self.policy_path, str(rps))):
-	            os.mkdir(os.path.join(self.policy_path, str(rps)))
+                os.mkdir(os.path.join(self.policy_path, str(rps)))
             if not os.path.exists(os.path.join(self.bandit_path, str(rps))):
                 os.mkdir(os.path.join(self.bandit_path, str(rps)))
         return

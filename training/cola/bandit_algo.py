@@ -2,12 +2,9 @@ import time
 import math
 import logging
 import numpy as np 
-import matplotlib.pyplot as plt 
-import pandas as pd
 from tqdm import tqdm
 
 import utils.kube as kube_utils
-
 
 logging.basicConfig(filename='logs/training.log',
                             filemode='a',

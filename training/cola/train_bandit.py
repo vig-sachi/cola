@@ -1,6 +1,7 @@
 import os
 import sys
-import json
+sys.path.insert(1, os.getcwd())
+
 import time
 import copy
 import pickle
@@ -9,9 +10,8 @@ import logging
 import datetime
 import operator
 import numpy as np
-import matplotlib.pyplot as plt
 from tqdm import tqdm
-from IPython import embed
+
 from google.cloud import trace_v1
 from google.protobuf.timestamp_pb2 import Timestamp 
 
@@ -22,7 +22,6 @@ from training.cola.bandit_algo import UCB_Bandit
 from utils.locust_loadgen import LoadGenerator
 from utils.launch_apps import launch_application
 from inference.utils.cloud_metrics import CloudMetrics
-sys.path.insert(1, os.getcwd())
 
 logging.basicConfig(filename='logs/training.log',
                             filemode='a',
@@ -85,7 +84,7 @@ class BanditTrainer(object):
                                         project=self.train_config.project_name,
                                         zone=self.train_config.zone,
                                         node_pool=self.train_config.node_pool,
-                                        num_nodes=self.train_config.max_nodes + 10
+                                        num_nodes=self.train_config.max_nodes
                                     )
         logger.info('Scaled node pool {} to {} nodes'.format(self.train_config.node_pool, 
                                                               self.train_config.max_nodes))
@@ -115,13 +114,13 @@ class BanditTrainer(object):
 
     def create_context_map(self):
 
-        #cluster_utils.scale_node_pool(
-        #                                cluster=self.train_config.cluster_name,
-        #                                project=self.train_config.project_name,
-        #                                zone=self.train_config.zone,
-        #                                node_pool=self.train_config.node_pool,
-        #                                num_nodes=sum(self.config.deployments.values())
-        #                            )
+        cluster_utils.scale_node_pool(
+                                       cluster=self.train_config.cluster_name,
+                                       project=self.train_config.project_name,
+                                       zone=self.train_config.zone,
+                                       node_pool=self.train_config.node_pool,
+                                       num_nodes=sum(self.config.deployments.values())
+                                   )
         print("Scaled to {} instances".format(sum(self.config.deployments.values())))
         kube_utils.apply_policy(self.config.deployments)
         time.sleep(30)

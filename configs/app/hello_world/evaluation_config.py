@@ -23,7 +23,7 @@ eval_cfg = EvalConfig(
                             min_nodes=1,
                             max_nodes=60,
 
-                            application='helloworld',
+                            application='hello_world',
                             rps_rates=[1000, 2000],
                             cpu_policies=[10,30,50,70,90],
                             bandit_policy='50_ms',
@@ -52,7 +52,7 @@ eval_cfg_cpu_fr_oos = EvalConfig(
                             min_nodes=1,
                             max_nodes=60,
 
-                            application='helloworld',
+                            application='hello_world',
                             rps_rates=[1500, 2500],
                             cpu_policies=[10,30,50,70,90],
                             bandit_policy='50_ms',
@@ -81,7 +81,7 @@ eval_cfg_ramp = EvalConfig(
                             min_nodes=1,
                             max_nodes=60,
 
-                            application='helloworld',
+                            application='hello_world',
                             rps_rates=[500, 1000, 2000, 1000, 500],
                             cpu_policies=[10,30,50,70,90],
                             bandit_policy='50_ms',
@@ -110,7 +110,7 @@ eval_cfg_ramp_oos = EvalConfig(
                             min_nodes=1,
                             max_nodes=60,
 
-                            application='helloworld',
+                            application='hello_world',
                             rps_rates=[750, 1250, 1750, 1250, 750],
                             cpu_policies=[10,30,50,70,90],
                             bandit_policy='50_ms',

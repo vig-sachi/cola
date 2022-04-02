@@ -51,13 +51,17 @@ class Autoscaler(object):
     def train(self, method='cola', run_name='cola'):
 
         if method == 'cola':
-            # Run Training
             bt = BanditTrainer(
                                 name=run_name,
                                 config=self.config, 
                                 train_config=self.train_config
                                 )
+            # Run Training
             bt.run()
+
+            # Record context we trained on.
+            bt.create_context_map()
+
         return
     
     def evaluate(self, method='cola'):
