@@ -11,8 +11,8 @@ from configs.app.hello_world.evaluation_config import eval_cfg
 
 
 # Create instance of COLA class.
-from main.cola import COLA
-cola = COLA(config=cfg, train_config=train_cfg, eval_config=eval_cfg, auth=True)
+from main.autoscale import Autoscaler
+cola = Autoscaler(config=cfg, train_config=train_cfg, eval_config=eval_cfg, auth=True)
 
 # Launch GKE application.
-cola.train_autoscaler(method='cola', run_name='train_test')
+cola.train(method='cola', run_name='train_test')

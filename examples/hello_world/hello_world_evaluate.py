@@ -11,15 +11,11 @@ from configs.app.hello_world.evaluation_config import eval_cfg
 
 
 # Create instance of COLA class.
-from main.cola import COLA
-cola = COLA(config=cfg, train_config=train_cfg, eval_config=eval_cfg, auth=True)
-
-
-# Create a cluster on GKE.
-cola.create_cluster()
+from main.autoscale import Autoscaler
+cola = Autoscaler(config=cfg, train_config=train_cfg, eval_config=eval_cfg, auth=True)
 
 # Authenticate to the GKE cluster.
 cola.auth_cluster()
 
-# Launch GKE application.
-cola.launch_application()
+# Evaluate performance of the learned autoscaler.
+cola.evaluate(method='cola')
