@@ -19,7 +19,6 @@ from scipy.optimize import nnls, minimize
 from scipy.optimize import minimize
 
 from utils import kube_utils, cluster_utils, hpa_utils
-from training.bandit_algo import UCB_Bandit
 from load_generator.locust_loadgen import LoadGenerator
 from microservices.launch_apps import launch_application
 from inference.cloud_metrics import CloudMetrics
@@ -239,7 +238,7 @@ class CherryPickTrainer(object):
         # Create subfolder for each rps value we train on.
         for rps in self.train_config.train_rps:
             if not os.path.exists(os.path.join(self.policy_path, str(rps))):
-	            os.mkdir(os.path.join(self.policy_path, str(rps)))
+                os.mkdir(os.path.join(self.policy_path, str(rps)))
             if not os.path.exists(os.path.join(self.bandit_path, str(rps))):
                 os.mkdir(os.path.join(self.bandit_path, str(rps)))
         return

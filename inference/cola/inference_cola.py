@@ -78,7 +78,7 @@ class BanditAutoscaler(object):
 
     def run(self, num_iters=1e20, wait_time=5):
 
-        for _iter in range(num_iters):
+        for _iter in range(int(num_iters)):
 
             # Get new metrics.
             try:
