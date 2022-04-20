@@ -23,6 +23,7 @@ class Autoscaler(object):
 
         # Create logging directories if they do not exist.
         self.make_dirs()
+        self.auth_cluster()
 
         return
 
@@ -57,7 +58,7 @@ class Autoscaler(object):
                                 train_config=self.train_config
                                 )
             # Run Training
-            bt.run()
+            #bt.run()
 
             # Record context we trained on.
             bt.create_context_map()

@@ -4,7 +4,7 @@ sys.path.insert(1, '..')
 
 import time
 import pickle
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 import utils.hpa as hpa_utils
 import utils.cluster as cluster_utils
@@ -48,7 +48,7 @@ class FixedRateWorkloadBandit(object):
         time.sleep(120)
 
         # Setup bandit autoscaler and run autoscaler in background process.
-        cmd = 'python3 inference/cola/inference_cola.py {} {} {} &'.format(self.train_config_path, self.eval_config.pod_filter, len(self.eval_config.services))
+        cmd = 'python3 inference/cola/inference_cola.py {} {} {} 0 &'.format(self.train_config_path, self.eval_config.pod_filter, len(self.eval_config.services))
         print(cmd)
         os.system(cmd)
 

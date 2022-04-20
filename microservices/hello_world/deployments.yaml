@@ -39,7 +39,7 @@ spec:
         image: gcr.io/vig-cloud/helloworld4
         resources:
           requests:
-            memory: "2000Mi"
+            memory: "1900Mi"
             cpu: "600m"
         imagePullPolicy: IfNotPresent #Always
         ports:

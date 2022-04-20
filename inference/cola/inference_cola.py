@@ -1,6 +1,10 @@
 import os
 import sys
-sys.path.insert(1, '..')
+#sys.path.insert(1, '..')
+#sys.path.insert(1, '../../')
+#sys.path.insert(2, '..')
+#import sys
+sys.path.insert(1, os.getcwd())
 
 import time
 import math
@@ -252,12 +256,12 @@ class BanditAutoscaler(object):
         if self.current_nodes is None or num_nodes != self.current_nodes:
             # Add nodes for services which are not scaled/controlled by this bandit autoscaler.
             num_nodes += self.add_nodes
-            cluster_utils.scale_node_pool(cluster='cola2', project=self.train_config.project_name, zone=self.train_config.zone, node_pool=self.train_config.node_pool, num_nodes=num_nodes)
+            cluster_utils.scale_node_pool(cluster=self.train_config.cluster_name, project=self.train_config.project_name, zone=self.train_config.zone, node_pool=self.train_config.node_pool, num_nodes=num_nodes)
             self.current_nodes = num_nodes
         return
     
     def turn_on_scaling(self):
-        cluster_utils.disable_node_pool_autoscaling(cluster='cola2', 
+        cluster_utils.disable_node_pool_autoscaling(cluster=self.train_config.cluster_name, 
                                       project=self.train_config.project_name, 
                                       zone=self.train_config.zone, 
                                       node_pool=self.train_config.node_pool,
@@ -266,7 +270,7 @@ class BanditAutoscaler(object):
         return
     
     def turn_off_scaling(self):
-        cluster_utils.enable_node_pool_autoscaling(cluster='cola2', 
+        cluster_utils.enable_node_pool_autoscaling(cluster=self.train_config.cluster_name, 
                                               project=self.train_config.project_name, 
                                               zone=self.train_config.zone, 
                                               node_pool=self.train_config.node_pool, 
