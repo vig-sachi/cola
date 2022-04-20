@@ -39,6 +39,9 @@ class Autoscaler(object):
         # Create the cluster.
         cluster.create_cluster(self.config.project_name, self.config.cluster_name, self.config.zone)
 
+        # Install Istio on cluster.
+        cluster.enable_istio_cluster(self.config.project_name, self.config.cluster_name, self.config.zone)
+
         return
 
     def auth_cluster(self):
