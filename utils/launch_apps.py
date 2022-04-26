@@ -41,8 +41,7 @@ def launch_application(app_name='online_boutique', delete_existing_apps=True, ot
 
     # Get host of the application and return.
     time.sleep(30) # Wait for the app and gateway to come up.
-    ingress_host = os.popen("kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}'").read()
-
+    ingress_host = os.popen("kubectl -n default get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}'").read()
 
     # Create users for train ticket application.
     if app_name == 'trainticket':
@@ -64,6 +63,19 @@ def delete_applications():
         os.system('kubectl delete -f microservices/{}/gateway.yaml'.format(application))
 
     return
+
+def get_host(app_name):
+    """
+    Get the host URL for an application.
+
+    Args:
+        app_name (str): Name of application
+
+    Returns:
+        str: host URL
+    """
+    ingress_host = os.popen("kubectl -n default get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}'").read()
+    return ingress_host+SUFFIXES[app_name]
 
 if __name__ == "__main__":
 

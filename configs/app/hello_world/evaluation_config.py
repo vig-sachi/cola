@@ -14,7 +14,7 @@ eval_cfg = EvalConfig(
                             cpu_requests=600,
                             mem_requests=2000,
 
-                            host='http://35.232.59.72/hello',
+                            host='',
                             locustfile='microservices/hello_world/workloads/default.py',
                             cluster_name='cola-test',
                             project_name='vig-cloud',

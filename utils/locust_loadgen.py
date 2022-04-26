@@ -190,7 +190,7 @@ class LoadGenerator(object):
         os.system('pkill -f "measure_replicas"')
 
         # Monitor number of deployments.
-        os.system('python3 evaluation/measure_replicas.py &')
+        os.system('python3 evaluation/eval_utils/measure_replicas.py &')
 
         return
 

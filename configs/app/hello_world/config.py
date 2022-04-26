@@ -16,12 +16,9 @@ cfg = Config(
                             },
                 cpu_requests=600,
                 mem_requests=2000,
-                #host='http://104.198.190.0/hello',
-                host='http://35.232.59.72/hello',
+                host='',
                 autoscale_path='',
                 cluster_name='cola-test',
-                #cluster_name='istio-stackdriver-demo',
                 project_name='vig-cloud',
                 zone='us-central1-c',
-                #zone='us-central1-f'
            )

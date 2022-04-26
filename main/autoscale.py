@@ -37,7 +37,7 @@ class Autoscaler(object):
         cluster.set_project(self.config.project_name)
 
         # Create the cluster.
-        #cluster.create_cluster(self.config.project_name, self.config.cluster_name, self.config.zone)
+        cluster.create_cluster(self.config.project_name, self.config.cluster_name, self.config.zone)
 
         # Install Istio on cluster.
         cluster.enable_istio_cluster(self.config.project_name, self.config.cluster_name, self.config.zone)
@@ -53,6 +53,9 @@ class Autoscaler(object):
         return
 
     def train(self, method='cola', run_name='cola'):
+
+        # Get current host for application.
+        self.config.host = launch.get_host(self.config.name)
 
         if method == 'cola':
             bt = BanditTrainer(
@@ -70,6 +73,9 @@ class Autoscaler(object):
     
     def evaluate(self, method='cola'):
 
+        # Get current host for application.
+        self.config.host = launch.get_host(self.config.name)
+
         # Instantiate class to run evaluation based on the method indicated.
         if method == 'cola':
             frw = FixedRateWorkloadBandit(eval_config=self.eval_config)
@@ -83,6 +89,9 @@ class Autoscaler(object):
     
     def inference(self, method='cola'):
 
+        # Get current host for application.
+        self.config.host = launch.get_host(self.config.name)
+        
         if method == 'cola':
             ba = BanditAutoscaler(self.eval_config.train_config_path, 
                              self.eval_config.pod_filter, 

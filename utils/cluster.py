@@ -50,6 +50,8 @@ def create_cluster(project='vig-cloud', cluster='cola-test', zone='us-central1-c
 
     # Run cluster creation.
     os.system(cmd)
+
+
     return
 
 
@@ -62,25 +64,42 @@ def enable_istio_cluster(project='vig-cloud', cluster='cola-test', zone='us-cent
         cluster (str, optional): Name of the GKE cluster. Defaults to 'cola-test'.
         zone (str, optional): Zone in which cluster is located. Defaults to 'us-central1-c'.
     """
+
+    # Enable gcloud services we will need for monitoring.
+    os.system('gcloud services enable container.googleapis.com monitoring.googleapis.com iamcredentials.googleapis.com')
+
+
     # Add admin permissions to current gcloud user.
-    os.system('kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user={}'.format(os.popen('gcloud config get-value core/account').read().replace('\n','')))
+    os.system('kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user={}'.format(
+        os.popen('gcloud config get-value core/account').read().replace('\n','')))
+
+    # Install helm.
+    os.system('curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3')
+    os.system('chmod 700 get_helm.sh')
+    os.system('./get_helm.sh')
+    os.system('rm get_helm.sh')
+
+    # Install istio through helm.
+    os.system('helm repo add istio https://istio-release.storage.googleapis.com/charts')
+    os.system('helm repo update')
 
     # Download and install Istio.
     os.system('curl -L https://istio.io/downloadIstio | sh -')
+    os.system('kubectl create namespace istio-system') # Create namespace for Istio deployments.
+    os.system('helm install istio-base istio/base -n istio-system')
+    os.system('helm install istiod istio/istiod -n istio-system --wait \
+               --set telemetry.v2.stackdriver.enabled=true \
+               --set telemetry.v2.stackdriver.logging=true \
+               --set telemetry.v2.stackdriver.monitoring=true \
+               --set telemetry.v2.stackdriver.topology=true') # Use stackdriver for gke logging and monitoring.
+    os.system('kubectl label namespace default istio-injection=enabled') # Enable auto sidecar injection.
 
-    # Add istio install to path.
-    dirs = [x for x in os.walk(os.getcwd())][0]
-    dir_ = [x for x in dirs[1] if x.startswith('istio')][0]
-    export_cmd = ":{}/{}/bin".format(dirs[0], dir_)
-    #print(export_cmd)
-    os.environ["PATH"] += export_cmd
-    #os.system(export_cmd)
+    # Install istio ingress gateway in default namespace.
+    os.system('helm install istio-ingressgateway istio/gateway --set nodeSelector."cloud\.google\.com/gke-nodepool"=default-pool')
 
-    # Install istio with given profile.
-    os.system('istioctl install --set profile={} -y'.format(profile))
-
-    # Enable auto sidecar injection for default namespace.
-    os.system('kubectl label namespace default istio-injection=enabled')
+    # Scale up istio ingress gateway instances (not part of our autoscaling target).
+    os.system(''' kubectl patch hpa istio-ingressgateway --patch '{"spec":{"maxReplicas":12}}' ''')
+    os.system(''' kubectl patch hpa istio-ingressgateway --patch '{"spec":{"minReplicas":12}}' ''')
 
     return
 
