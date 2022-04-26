@@ -37,6 +37,7 @@ class CloudMetrics(object):
         df = df.resample('T').sum()
         df = df.sum(axis=1)
         df /= 60.0
+        df = df.diff()
         print(df)
 
         return df.iloc[-1]
@@ -58,6 +59,7 @@ class CloudMetrics(object):
         df = df.resample('T').sum()
         df = df.sum(axis=1)
         df /= 60.0
+        df = df.diff()
         print(df)
 
         return df
@@ -84,6 +86,7 @@ class CloudMetrics(object):
             req_df = req_df.resample('T').sum()
             req_df = req_df.sum(axis=1)
             req_df /= 60.0
+            req_df = req_df.diff()
 
             # Store the most recent minute in the a dictionary and vector of results.
             req_index.append(req_name)

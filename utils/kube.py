@@ -71,6 +71,9 @@ def get_current_deployments():
     for dep in range(len(deployments['items'])):
         current_deployments[deployments['items'][dep]['metadata']['name']] = deployments['items'][dep]['status']['readyReplicas']
 
+    if 'istio-ingressgateway' in current_deployments:
+        del current_deployments['istio-ingressgateway']
+
     return current_deployments
 
 

@@ -37,7 +37,7 @@ class Autoscaler(object):
         cluster.set_project(self.config.project_name)
 
         # Create the cluster.
-        cluster.create_cluster(self.config.project_name, self.config.cluster_name, self.config.zone)
+        #cluster.create_cluster(self.config.project_name, self.config.cluster_name, self.config.zone)
 
         # Install Istio on cluster.
         cluster.enable_istio_cluster(self.config.project_name, self.config.cluster_name, self.config.zone)
@@ -61,7 +61,7 @@ class Autoscaler(object):
                                 train_config=self.train_config
                                 )
             # Run Training
-            #bt.run()
+            bt.run()
 
             # Record context we trained on.
             bt.create_context_map()

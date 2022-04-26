@@ -66,7 +66,15 @@ def enable_istio_cluster(project='vig-cloud', cluster='cola-test', zone='us-cent
     os.system('kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user={}'.format(os.popen('gcloud config get-value core/account').read().replace('\n','')))
 
     # Download and install Istio.
-    os.system('curl -L https://git.io/getLastestIstio | sh -')
+    os.system('curl -L https://istio.io/downloadIstio | sh -')
+
+    # Add istio install to path.
+    dirs = [x for x in os.walk(os.getcwd())][0]
+    dir_ = [x for x in dirs[1] if x.startswith('istio')][0]
+    export_cmd = ":{}/{}/bin".format(dirs[0], dir_)
+    #print(export_cmd)
+    os.environ["PATH"] += export_cmd
+    #os.system(export_cmd)
 
     # Install istio with given profile.
     os.system('istioctl install --set profile={} -y'.format(profile))

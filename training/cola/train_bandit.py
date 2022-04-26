@@ -98,7 +98,7 @@ class BanditTrainer(object):
         logger.info('Disabled node pool autoscaling for {}'.format(self.train_config.node_pool))
 
         # Launch the application.
-        launch_application(app_name=self.config.name)
+        #launch_application(app_name=self.config.name)
         time.sleep(180)
 
     def run(self):
