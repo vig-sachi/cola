@@ -296,8 +296,9 @@ metadata:
     service: frontend
 spec:
   ports:
-  - port: 8080
-    name: http
+  - name: http
+    port: 80
+    targetPort: 8080
   selector:
     app: frontend
 # ---

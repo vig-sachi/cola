@@ -8,8 +8,8 @@ spec:
   servers:
   - port:
       number: 80
-      name: http
-      protocol: HTTP
+      name: http2
+      protocol: HTTP2
     hosts:
     - "*"
 ---
@@ -38,4 +38,4 @@ spec:
     - destination:
         host: productpage
         port:
-          number: 9080
+          number: 80

@@ -5,13 +5,7 @@ import utils.cluster as cluster
 import utils.launch_apps as launch
 import utils.hpa as hpa_utils
 
-# COLA Autoscaling imports.
-from training.cola.train_bandit import BanditTrainer
-from evaluation.cola.evaluation_cola import FixedRateWorkloadBandit
-from inference.cola.inference_cola import BanditAutoscaler
 
-# CPU Autoscaling imports.
-from evaluation.cpu_threshold.evaluation_cpu import FixedRateWorkloadCPU
 
 
 class Autoscaler(object):
@@ -54,6 +48,9 @@ class Autoscaler(object):
 
     def train(self, method='cola', run_name='cola'):
 
+        # COLA Autoscaling imports.
+        from training.cola.train_bandit import BanditTrainer
+
         # Get current host for application.
         self.config.host = launch.get_host(self.config.name)
 
@@ -73,6 +70,10 @@ class Autoscaler(object):
     
     def evaluate(self, method='cola'):
 
+        # Evaluation imports.
+        from evaluation.cola.evaluation_cola import FixedRateWorkloadBandit
+        from evaluation.cpu_threshold.evaluation_cpu import FixedRateWorkloadCPU
+
         # Get current host for application.
         self.config.host = launch.get_host(self.config.name)
 
@@ -88,6 +89,9 @@ class Autoscaler(object):
         return
     
     def inference(self, method='cola'):
+
+        # Inference imports.
+        from inference.cola.inference_cola import BanditAutoscaler
 
         # Get current host for application.
         self.config.host = launch.get_host(self.config.name)

@@ -31,6 +31,9 @@ def create_cluster(project='vig-cloud', cluster='cola-test', zone='us-central1-c
         zone (str, optional): Zone in which cluster is located. Defaults to 'us-central1-c'.
     """
 
+    # Set project ID for google cloud sdk.
+    os.system('gcloud config set project {}'.format(project))
+
     # Basic cluster information.
     cmd = 'gcloud beta container --project "{}" clusters create "{}" --zone "{}" '.format(project, cluster, zone)
 
