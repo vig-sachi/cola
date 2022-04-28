@@ -10,19 +10,22 @@ train_cfg = TrainConfig(
                             train_rps=[200,400,600,800], 
                             train_iters=15, 
                             latency_threshold=50, 
+
                             c=2, 
                             w_l=5, 
                             w_i=15, 
                             min_iters=5, 
-                            locustfile='load_generator/locustfiles/bookinfo/default.py',
+
+                            locustfile='microservices/book_info/workloads/default.py',
                             pod_filter='productpage',
                             req_names=[],
                             search_strategy='cpu',
                             sample_duration=25,
-                            cluster_name='cola2',
+
+                            cluster_name='cola-test',
                             project_name='vig-cloud',
                             zone='us-central1-c',
-                            node_pool='ob-pool',
+                            node_pool='app-pool',
                             max_nodes=60,
                             lat_opt='Average Latency'
                         )

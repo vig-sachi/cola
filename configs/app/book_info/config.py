@@ -6,7 +6,7 @@ from utils.config import Config, EvalConfig, TrainConfig
 
 # Book Info Application
 cfg = Config(
-                name='bookinfo',
+                name='book_info',
                 services=[
                             'details', 
                             'productpage', 
@@ -21,6 +21,9 @@ cfg = Config(
                             },
                 cpu_requests=600,
                 mem_requests=2000,
-                host='http://35.232.246.231/productpage',
-                autoscale_path=''
+                host='',
+                autoscale_path='',
+                cluster_name='cola-test',
+                project_name='vig-cloud',
+                zone='us-central1-c',
             )
