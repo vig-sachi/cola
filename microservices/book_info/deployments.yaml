@@ -83,7 +83,7 @@ spec:
       tolerations:
       - key: dedicated
         operator: Equal
-        value: ob
+        value: app-tag
         effect: NoSchedule
       nodeSelector:
         cloud.google.com/gke-nodepool: app-pool
@@ -145,7 +145,7 @@ spec:
       tolerations:
       - key: dedicated
         operator: Equal
-        value: ob
+        value: app-tag
         effect: NoSchedule
       nodeSelector:
         cloud.google.com/gke-nodepool: app-pool
@@ -220,7 +220,7 @@ spec:
       tolerations:
       - key: dedicated
         operator: Equal
-        value: ob
+        value: app-tag
         effect: NoSchedule
       nodeSelector:
         cloud.google.com/gke-nodepool: app-pool
@@ -289,7 +289,7 @@ spec:
       tolerations:
       - key: dedicated
         operator: Equal
-        value: ob
+        value: app-tag
         effect: NoSchedule
       nodeSelector:
         cloud.google.com/gke-nodepool: app-pool
