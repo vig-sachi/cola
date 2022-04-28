@@ -237,8 +237,9 @@ metadata:
     service: productpage
 spec:
   ports:
-  - port: 9080
-    name: http
+  - name: http
+    port: 80
+    targetPort: 9080
   selector:
     app: productpage
 ---
