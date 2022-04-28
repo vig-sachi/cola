@@ -3,7 +3,6 @@ import sys
 import json
 import time
 
-#sys.path.insert(1, '/home/packard2700/autoscale-bandit')
 sys.path.insert(1, '../..')
 sys.path.insert(0, os.getcwd())
 

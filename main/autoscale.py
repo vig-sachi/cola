@@ -111,7 +111,7 @@ class Autoscaler(object):
 
     def make_dirs(self):
 
-        for directory in ['logs', 'logs/scratch']:
+        for directory in ['/logs', '/logs/scratch']:
             path = os.getcwd() + directory
 
             # Check whether the specified path exists or not
