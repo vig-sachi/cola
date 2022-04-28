@@ -73,6 +73,7 @@ class Autoscaler(object):
         # Evaluation imports.
         from evaluation.cola.evaluation_cola import FixedRateWorkloadBandit
         from evaluation.cpu_threshold.evaluation_cpu import FixedRateWorkloadCPU
+        from evaluation.no_autoscaler.evaluation_na import FixedRateWorkloadNA
 
         # Get current host for application.
         self.config.host = launch.get_host(self.config.name)
@@ -82,6 +83,8 @@ class Autoscaler(object):
             frw = FixedRateWorkloadBandit(eval_config=self.eval_config)
         elif method == 'cpu':
             frw = FixedRateWorkloadCPU(self.eval_config)
+        elif method == 'na':
+            frw = FixedRateWorkloadNA(self.eval_config)
         
         # Run evaluation.
         frw.run()
