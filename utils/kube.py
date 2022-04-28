@@ -3,7 +3,6 @@ import json
 import time
 import pandas as pd
 
-
 def scale_deployment(deployment, replicas):
     """
     Scale the number of replicas for a particular deployment.

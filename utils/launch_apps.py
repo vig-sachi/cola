@@ -75,7 +75,7 @@ def get_host(app_name):
         str: host URL
     """
     ingress_host = os.popen("kubectl -n default get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}'").read()
-    return ingress_host+SUFFIXES[app_name]
+    return 'http://' + ingress_host+SUFFIXES[app_name]
 
 if __name__ == "__main__":
 

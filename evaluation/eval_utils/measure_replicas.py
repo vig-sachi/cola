@@ -3,8 +3,11 @@ import sys
 import json
 import time
 
-sys.path.insert(1, '/home/packard2700/autoscale-bandit')
-from utils.kube_utils import get_current_deployments
+#sys.path.insert(1, '/home/packard2700/autoscale-bandit')
+sys.path.insert(1, '../..')
+sys.path.insert(0, os.getcwd())
+
+from utils.kube import get_current_deployments
 
 # File name, remove the old log on start
 fname = 'service_replicas_count.json'

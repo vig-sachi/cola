@@ -9,7 +9,7 @@ import pickle
 import utils.hpa as hpa_utils
 import utils.cluster as cluster_utils
 from utils.locust_loadgen import LoadGenerator
-from utils.launch_apps import launch_application
+from utils.launch_apps import launch_application, get_host
     
 
 class FixedRateWorkloadBandit(object):
@@ -31,7 +31,7 @@ class FixedRateWorkloadBandit(object):
         hpa_utils.delete_autoscaling_policy(config=self.eval_config)
 
         # Setup load generator.
-        self.lg = LoadGenerator(host=self.eval_config.host, 
+        self.lg = LoadGenerator(host=get_host(self.eval_config.application), 
                                 locustfile=self.eval_config.locustfile, 
                                 duration=self.eval_config.duration,
                                 csv_path=self.eval_config.csv_path,
