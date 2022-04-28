@@ -6,7 +6,7 @@ from configs.app.book_info.config import cfg
 ##############################################
 
 # 1. Fixed Rate Workload (In Sample)
-eval_cfg_cpu_fr = EvalConfig(
+eval_cfg = EvalConfig(
                             name='fixed_rate_insample2',
                             services=cfg.services, 
                             deployments=cfg.deployments,
