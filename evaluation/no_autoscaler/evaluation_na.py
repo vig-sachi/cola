@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import utils.hpa as hpa_utils
 import utils.cluster as cluster_utils
 from utils.locust_loadgen import LoadGenerator
-from utils.launch_apps import launch_application
+from utils.launch_apps import launch_application, get_host
 
 
 # Class to run Fixed Rate evaluations.
@@ -31,7 +31,7 @@ class FixedRateWorkloadNA(object):
         launch_application(app_name=self.eval_config.application)
 
         # Setup load generator.
-        self.lg = LoadGenerator(host=self.eval_config.host, 
+        self.lg = LoadGenerator(host=get_host(self.eval_config.application), 
                                 locustfile=self.eval_config.locustfile, 
                                 duration=self.eval_config.duration,
                                 csv_path=self.eval_config.csv_path,
