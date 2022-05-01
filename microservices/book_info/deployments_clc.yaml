@@ -89,7 +89,7 @@ spec:
         value: app-tag
         effect: NoSchedule
       nodeSelector:
-        cloud.google.com/gke-nodepool: app-pool
+        cloud.google.com/gke-nodepool: app-pool-2
 ---
 ##################################################################################################
 # Ratings service
@@ -154,7 +154,7 @@ spec:
         value: app-tag
         effect: NoSchedule
       nodeSelector:
-        cloud.google.com/gke-nodepool: app-pool
+        cloud.google.com/gke-nodepool: app-pool-2
 ---
 ##################################################################################################
 # Reviews service
@@ -232,7 +232,7 @@ spec:
         value: app-tag
         effect: NoSchedule
       nodeSelector:
-        cloud.google.com/gke-nodepool: app-pool
+        cloud.google.com/gke-nodepool: app-pool-2
 ---
 ##################################################################################################
 # Productpage services
@@ -304,5 +304,5 @@ spec:
         value: app-tag
         effect: NoSchedule
       nodeSelector:
-        cloud.google.com/gke-nodepool: app-pool
+        cloud.google.com/gke-nodepool: app-pool-2
 ---
