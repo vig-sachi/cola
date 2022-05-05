@@ -21,7 +21,7 @@ train_cfg = TrainConfig(
                             search_strategy='cpu',
                             sample_duration=45,
 
-                            cluster_name='cola-test',
+                            cluster_name='cola-test-ob',
                             project_name='vig-cloud',
                             zone='us-central1-c',
                             node_pool='ob-pool',

@@ -17,7 +17,7 @@ eval_cfg = EvalConfig(
 
                             host='',
                             locustfile='microservices/online_boutique/workloads/default.py',
-                            cluster_name='cola-test',
+                            cluster_name='cola-test-ob',
                             project_name='vig-cloud',
                             zone='us-central1-c',
                             node_pool='app-pool',

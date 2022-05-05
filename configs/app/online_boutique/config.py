@@ -37,7 +37,7 @@ cfg = Config(
                 mem_requests=2000,
                 host='',
                 autoscale_path='',
-                cluster_name='cola-test',
+                cluster_name='cola-test-ob',
                 project_name='vig-cloud',
                 zone='us-central1-c',
             )
