@@ -19,4 +19,5 @@ cola.auth_cluster()
 
 # Evaluate performance of the learned autoscaler.
 # cola.evaluate(method='cola')
-cola.evaluate(method='na')
+#cola.evaluate(method='na')
+cola.evaluate(method='cpu')

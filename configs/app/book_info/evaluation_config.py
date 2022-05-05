@@ -7,7 +7,7 @@ from configs.app.book_info.config import cfg
 
 # 1. Fixed Rate Workload (In Sample)
 eval_cfg = EvalConfig(
-                            name='fixed_rate_insample2',
+                            name='fixed_rate_insample_colocate',
                             services=cfg.services, 
                             deployments=cfg.deployments,
                             cpu_requests=600,
@@ -23,13 +23,13 @@ eval_cfg = EvalConfig(
                             max_nodes=60,
 
                             application='book_info',
-                            rps_rates=[400,800], 
-                            cpu_policies=[10,30,50,70,90],
+                            rps_rates=[20,40,60], 
+                            cpu_policies=[50],
                             bandit_policy='50_ms',
                             train_config_path='/home/packard2700/autoscale-bandit/models/bookinfo/bandit-50',
                             pod_filter='productpage',
                             duration=60,
-                            num_iters=10,
+                            num_iters=50,
                             wait_time=120,
                             reset_cluster=False
                         )
