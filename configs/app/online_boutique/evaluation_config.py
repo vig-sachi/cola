@@ -25,7 +25,7 @@ eval_cfg = EvalConfig(
                             max_nodes=130,
 
                             application='online_boutique',
-                            rps_rates=[200,400,600],
+                            rps_rates=[200,250,300],
                             cpu_policies=[30,50,70],
                             bandit_policy='50_ms',
                             train_config_path='/home/packard2700/autoscale-bandit/models/online_boutique/bandit-50',

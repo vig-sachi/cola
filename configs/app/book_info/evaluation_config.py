@@ -15,15 +15,15 @@ eval_cfg = EvalConfig(
 
                             host='',
                             locustfile='microservices/book_info/workloads/default.py',
-                            cluster_name='cola-test',
+                            cluster_name='cola-test-bi',
                             project_name='vig-cloud',
                             zone='us-central1-c',
                             node_pool='app-pool',
                             min_nodes=1,
-                            max_nodes=96,
+                            max_nodes=100,
 
                             application='book_info',
-                            rps_rates=[800], 
+                            rps_rates=[200,300,400,500], 
                             cpu_policies=[30,50,70],
                             bandit_policy='50_ms',
                             train_config_path='/home/packard2700/autoscale-bandit/models/bookinfo/bandit-50',

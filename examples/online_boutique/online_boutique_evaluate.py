@@ -18,6 +18,6 @@ cola = Autoscaler(config=cfg, train_config=train_cfg, eval_config=eval_cfg, auth
 cola.auth_cluster()
 
 # Evaluate performance of the learned autoscaler.
-# cola.evaluate(method='cola')
+cola.evaluate(method='cola')
 #cola.evaluate(method='na')
-cola.evaluate(method='cpu')
+# cola.evaluate(method='cpu')

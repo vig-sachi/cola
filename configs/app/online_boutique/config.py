@@ -33,8 +33,8 @@ cfg = Config(
                                 'paymentservice':10, 
                                 'emailservice':10
                             },
-                cpu_requests=600,
-                mem_requests=2000,
+                cpu_requests=500,
+                mem_requests=1900,
                 host='',
                 autoscale_path='',
                 cluster_name='cola-test-ob',
