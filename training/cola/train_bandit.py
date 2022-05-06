@@ -286,7 +286,7 @@ class BanditTrainer(object):
 
             # Select service based on highest cpu usage increase.
             max_serv_idx = np.argmax(util_df.sort_values([3])[1] - util_df_pre.sort_values([3])[1])
-            service =  util_df.sort_values([3])[3][max_serv_idx]
+            service =  util_df.sort_values([3])[3].iloc[max_serv_idx]
 
             # Select service with highest cpu utilization that we have not searched recently.
             #service = util_df.sort_values([1]).iloc[-1][3]
