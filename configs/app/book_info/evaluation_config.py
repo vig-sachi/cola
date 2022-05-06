@@ -20,19 +20,51 @@ eval_cfg = EvalConfig(
                             zone='us-central1-c',
                             node_pool='app-pool',
                             min_nodes=1,
-                            max_nodes=60,
+                            max_nodes=96,
 
                             application='book_info',
-                            rps_rates=[20,40,60], 
-                            cpu_policies=[50],
+                            rps_rates=[800], 
+                            cpu_policies=[30,50,70],
                             bandit_policy='50_ms',
                             train_config_path='/home/packard2700/autoscale-bandit/models/bookinfo/bandit-50',
                             pod_filter='productpage',
                             duration=60,
-                            num_iters=50,
+                            num_iters=25,
                             wait_time=120,
                             reset_cluster=False
                         )
+
+
+
+eval_cfg_two_min = EvalConfig(
+                            name='fixed_rate_insample_colocate_twomin',
+                            services=cfg.services,
+                            deployments=cfg.deployments,
+                            cpu_requests=600,
+                            mem_requests=2000,
+
+                            host='',
+                            locustfile='microservices/book_info/workloads/default.py',
+                            cluster_name='cola-test',
+                            project_name='vig-cloud',
+                            zone='us-central1-c',
+                            node_pool='app-pool',
+                            min_nodes=1,
+                            max_nodes=60,
+
+                            application='book_info',
+                            rps_rates=[20,40,60],
+                            cpu_policies=[50],
+                            bandit_policy='50_ms',
+                            train_config_path='/home/packard2700/autoscale-bandit/models/bookinfo/bandit-50',
+                            pod_filter='productpage',
+                            duration=120,
+                            num_iters=25,
+                            wait_time=120,
+                            reset_cluster=False
+                        )
+
+
 
 # 2. Fixed Rate Workload (Out of Sample)
 eval_cfg_cpu_fr_oos = EvalConfig(

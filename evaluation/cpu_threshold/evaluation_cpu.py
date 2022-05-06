@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 
 import utils.hpa as hpa_utils
 import utils.cluster as cluster_utils
+import utils.kube as kube_utils
 from utils.locust_loadgen import LoadGenerator
 from utils.launch_apps import launch_application, get_host
 
@@ -51,7 +52,7 @@ class FixedRateWorkloadCPU(object):
                                               min_nodes=self.eval_config.min_nodes,
                                               max_nodes=self.eval_config.max_nodes
                                               )
-        time.sleep(120)
+        time.sleep(30)
 
     def run(self):
 
@@ -65,6 +66,7 @@ class FixedRateWorkloadCPU(object):
 
     def run_fixed_rate_cpu(self, cpu_policy):
 
+
         # Authenticate to GKE.
         cluster_utils.authenticate(cluster=self.eval_config.cluster_name)
 
@@ -76,7 +78,7 @@ class FixedRateWorkloadCPU(object):
             # Measure system response.
             rps_rate_res = self.lg.run_workload(rps_rates = [rps]*self.num_iters)
             res[rps] = rps_rate_res
-        
+
         return res
 
     def save_results(self, res, cpu_policy):

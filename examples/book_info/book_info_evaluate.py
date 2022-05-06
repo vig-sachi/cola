@@ -10,6 +10,10 @@ from configs.app.book_info.train_config import train_cfg
 from configs.app.book_info.evaluation_config import eval_cfg
 
 
+#########
+# Run 1 minute evaluations
+#########
+
 # Create instance of COLA class.
 from main.autoscale import Autoscaler
 cola = Autoscaler(config=cfg, train_config=train_cfg, eval_config=eval_cfg, auth=True)
@@ -18,6 +22,7 @@ cola = Autoscaler(config=cfg, train_config=train_cfg, eval_config=eval_cfg, auth
 cola.auth_cluster()
 
 # Evaluate performance of the learned autoscaler.
-# cola.evaluate(method='cola')
 #cola.evaluate(method='na')
 cola.evaluate(method='cpu')
+
+

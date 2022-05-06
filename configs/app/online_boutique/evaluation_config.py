@@ -20,18 +20,18 @@ eval_cfg = EvalConfig(
                             cluster_name='cola-test-ob',
                             project_name='vig-cloud',
                             zone='us-central1-c',
-                            node_pool='app-pool',
+                            node_pool='app-pool-2',
                             min_nodes=1,
                             max_nodes=130,
 
                             application='online_boutique',
-                            rps_rates=[600, 800],
-                            cpu_policies=[10,30,50,70,90],
+                            rps_rates=[200,400,600],
+                            cpu_policies=[30,50,70],
                             bandit_policy='50_ms',
                             train_config_path='/home/packard2700/autoscale-bandit/models/online_boutique/bandit-50',
                             pod_filter='frontend',
                             duration=60,
-                            num_iters=10,
+                            num_iters=15,
                             wait_time=120,
                             reset_cluster=False
                         )
