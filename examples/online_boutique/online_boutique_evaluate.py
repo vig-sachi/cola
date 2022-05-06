@@ -5,9 +5,9 @@ import os, sys
 sys.path.insert(1, os.getcwd())
 
 # Load necessary configs into memory.
-from configs.app.book_info.config import cfg
-from configs.app.book_info.train_config import train_cfg
-from configs.app.book_info.evaluation_config import eval_cfg
+from configs.app.online_boutique.config import cfg
+from configs.app.online_boutique.train_config import train_cfg
+from configs.app.online_boutique.evaluation_config import eval_cfg
 
 
 # Create instance of COLA class.
