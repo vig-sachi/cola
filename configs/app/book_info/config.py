@@ -1,4 +1,4 @@
-from utils.config import Config, EvalConfig, TrainConfig
+from utils.config import Config
 
 ##############################################
 #### Application Config

@@ -10,8 +10,8 @@ eval_cfg = EvalConfig(
                             name='fixed_rate_insample_colocate',
                             services=cfg.services, 
                             deployments=cfg.deployments,
-                            cpu_requests=600,
-                            mem_requests=2000,
+                            cpu_requests=500,
+                            mem_requests=1900,
 
                             host='',
                             locustfile='microservices/book_info/workloads/default.py',
