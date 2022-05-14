@@ -28,8 +28,6 @@ class FixedRateWorkloadCPU(object):
         self.wait_time = self.eval_config.wait_time
         self.reset_cluster = self.eval_config.reset_cluster
 
-        # Launch the application.
-        launch_application(app_name=self.eval_config.application)
 
         # Setup load generator.
         self.lg = LoadGenerator(host=get_host(self.eval_config.application), 
@@ -52,7 +50,10 @@ class FixedRateWorkloadCPU(object):
                                               min_nodes=self.eval_config.min_nodes,
                                               max_nodes=self.eval_config.max_nodes
                                               )
-        time.sleep(30)
+
+        # Launch the application.
+        launch_application(config=self.eval_config)
+        time.sleep(120)
 
     def run(self):
 

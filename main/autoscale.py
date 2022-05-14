@@ -6,8 +6,6 @@ import utils.launch_apps as launch
 import utils.hpa as hpa_utils
 
 
-
-
 class Autoscaler(object):
     def __init__(self, config, train_config=None, eval_config=None, auth=True):
         self.config = config
@@ -31,7 +29,13 @@ class Autoscaler(object):
         cluster.set_project(self.config.project_name)
 
         # Create the cluster.
-        cluster.create_cluster(self.config.project_name, self.config.cluster_name, self.config.zone)
+        cluster.create_cluster(
+                                project=self.config.project_name, 
+                                cluster=self.config.cluster_name, 
+                                zone=self.config.zone,
+                                num_services=len(self.config.services),
+                                pods_per_node=self.config.pods_per_node,
+                                )
 
         # Install Istio on cluster.
         cluster.enable_istio_cluster(self.config.project_name, self.config.cluster_name, self.config.zone)
@@ -43,7 +47,7 @@ class Autoscaler(object):
         return
 
     def launch_application(self):
-        launch.launch_application(app_name=self.config.name)
+        launch.launch_application(config=self.eval_config)
         return
 
     def train(self, method='cola', run_name='cola'):

@@ -88,7 +88,7 @@ class ErnestTrainer(object):
         print('Scaled node pool {} to {} nodes'.format(self.train_config.node_pool,
                                                               self.train_config.max_nodes))
         # Launch the application.
-        launch_application(app_name=self.config.name)
+        launch_application(config=self.config)
         time.sleep(90)
 
 

@@ -28,7 +28,7 @@ class FixedRateWorkloadMEM(object):
         self.reset_cluster = self.eval_config.reset_cluster
 
         # Launch the application.
-        launch_application(app_name=self.eval_config.application)
+        launch_application(config=self.eval_config)
 
         # Setup load generator.
         self.lg = LoadGenerator(host=self.eval_config.host, 

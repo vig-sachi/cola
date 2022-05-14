@@ -45,7 +45,7 @@ class FixedRateWorkloadErnest(object):
         self.reset_node_pool()
 
         # Launch the application.
-        launch_application(app_name=self.eval_config.application)
+        launch_application(config=self.eval_config)
         time.sleep(120)
         
         # Setup bandit autoscaler and run autoscaler in background process.

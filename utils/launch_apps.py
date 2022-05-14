@@ -15,7 +15,7 @@ SUFFIXES = {
             'train_ticket': ':80',
            }
 
-def launch_application(app_name='online_boutique', delete_existing_apps=True, other_applications=['helloworld', 'bookinfo', 'online_boutique', 'hotel_reservation', 'sock_shop', 'trainticket', 'synthlarge']):
+def launch_application(config, delete_existing_apps=True):
     """
     Launch the specified microservice application.
     Requires cloud provider authentication to already be configured.
@@ -35,8 +35,8 @@ def launch_application(app_name='online_boutique', delete_existing_apps=True, ot
 
 
     # Launch specified application
-    os.system('kubectl apply -f microservices/{}/deployments.yaml'.format(app_name))
-    os.system('kubectl apply -f microservices/{}/gateway.yaml'.format(app_name))
+    os.system('kubectl apply -f {}'.format(config.deployment_path))
+    os.system('kubectl apply -f {}'.format(config.gateway_path))
 
 
     # Get host of the application and return.
@@ -44,12 +44,12 @@ def launch_application(app_name='online_boutique', delete_existing_apps=True, ot
     ingress_host = os.popen("kubectl -n default get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}'").read()
 
     # Create users for train ticket application.
-    if app_name == 'trainticket':
+    if config.name == 'trainticket':
         time.sleep(60)
         os.system('locust -f load_generator/locustfiles/trainticket/create_users.py --headless -u 100 -r 10 --host http://{ingress_host} --run-time 240s'.format(ingress_host=ingress_host))
         os.system('locust -f load_generator/locustfiles/trainticket/create_users.py --headless -u 100 -r 10 --host http://{ingress_host} --run-time 240s'.format(ingress_host=ingress_host))
 
-    print("Host = {ingress_host}".format(ingress_host=ingress_host+SUFFIXES[app_name]))
+    print("Host = {ingress_host}".format(ingress_host=ingress_host+SUFFIXES[config.name]))
     return
 
 def delete_applications():
@@ -76,18 +76,3 @@ def get_host(app_name):
     """
     ingress_host = os.popen("kubectl -n default get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}'").read()
     return 'http://' + ingress_host+SUFFIXES[app_name]
-
-if __name__ == "__main__":
-
-    delete_applications()
-
-    # Parse application from command line.
-    parser = argparse.ArgumentParser()
-    parser.add_argument('application', type=str, default='online_boutique')
-    args = parser.parse_args()
-    print(args)
-    app_name = args.application
-
-    # Launch application.
-    host = launch_application(app_name)
-    print(host)

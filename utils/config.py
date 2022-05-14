@@ -1,7 +1,9 @@
 import copy
 
 class Config(object):
-    def __init__(self, name, services, deployments, cpu_requests, mem_requests, host, cluster_name, project_name, zone, autoscale_path=''):
+    def __init__(self, name, services, deployments, cpu_requests, mem_requests, host, cluster_name, 
+                       project_name, zone, autoscale_path='', deployment_path='', gateway_path='', 
+                       pods_per_node=1, cluster_type='default'):
         """
         Configuration of a microservice application.
         Includes information on services, node ranges and endpoint.
@@ -25,6 +27,10 @@ class Config(object):
         self.cluster_name = cluster_name
         self.project_name = project_name
         self.zone = zone
+        self.deployment_path = deployment_path
+        self.gateway_path = gateway_path
+        self.pods_per_node = pods_per_node
+        self.cluster_type = cluster_type
 
 class TrainConfig(object):
     def __init__(self, train_rps, 
@@ -121,7 +127,8 @@ class EvalConfig(object):
     def __init__(self, name, services, deployments, cpu_requests, mem_requests, 
                 host, locustfile, cluster_name, project_name, zone, node_pool, min_nodes, max_nodes,
                 application, rps_rates, cpu_policies, bandit_policy, pod_filter, train_config_path, duration, 
-                num_iters, wait_time, reset_cluster, autoscale_path='', second_context=None):
+                num_iters, wait_time, reset_cluster, autoscale_path='', second_context=None,
+                deployment_path='', gateway_path='', pods_per_node=1, cluster_type='default'):
         """
         Evaluation configuration for learned autoscaling policy.
 
@@ -188,3 +195,8 @@ class EvalConfig(object):
         self.wait_time = wait_time
         self.reset_cluster = reset_cluster
 
+        # Application deployment settings
+        self.deployment_path = deployment_path
+        self.gateway_path = gateway_path
+        self.pods_per_node = pods_per_node
+        self.cluster_type = cluster_type

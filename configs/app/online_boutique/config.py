@@ -35,10 +35,16 @@ cfg = Config(
                             },
                 cpu_requests=500,
                 mem_requests=1900,
+
                 host='',
                 autoscale_path='',
                 cluster_name='cola-test-ob',
                 project_name='vig-cloud',
                 zone='us-central1-c',
+
+                deployment_path = 'microservices/online_boutique/deployments.yaml',
+                gateway_path = 'microservices/online_boutique/gateway.yaml',
+                pods_per_node = 1,
+                cluster_type = 'default',
             )
 

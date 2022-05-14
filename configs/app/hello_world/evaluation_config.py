@@ -32,7 +32,12 @@ eval_cfg = EvalConfig(
                             duration=60,
                             num_iters=10,
                             wait_time=120,
-                            reset_cluster=False
+                            reset_cluster=False,
+                            
+                            deployment_path = 'microservices/hello_world/deployments.yaml',
+                            gateway_path = 'microservices/hello_world/gateway.yaml',
+                            pods_per_node = 1,
+                            cluster_type = 'default',
                         )
 
 # 2. Fixed Rate Workload (In Sample)

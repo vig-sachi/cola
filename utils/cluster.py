@@ -1,4 +1,5 @@
 import os
+import math
 
 def gcloud_authentication():
     """
@@ -19,7 +20,7 @@ def set_project(project='vig-cloud'):
     return
 
 
-def create_cluster(project='vig-cloud', cluster='cola-test', zone='us-central1-c'):
+def create_cluster(project='vig-cloud', cluster='cola-test', zone='us-central1-c', num_services=3, pods_per_node=1):
     """
     Create a cluster on Google Kubernetes Engine with:
         - An application node pool for logging, monitoring, etc. pods.
@@ -30,6 +31,8 @@ def create_cluster(project='vig-cloud', cluster='cola-test', zone='us-central1-c
         cluster (str, optional): Name of the GKE cluster. Defaults to 'cola-test'.
         zone (str, optional): Zone in which cluster is located. Defaults to 'us-central1-c'.
     """
+
+    num_application_nodes = math.ceil(num_services / pods_per_node)
 
     # Set project ID for google cloud sdk.
     os.system('gcloud config set project {}'.format(project))
@@ -46,10 +49,10 @@ def create_cluster(project='vig-cloud', cluster='cola-test', zone='us-central1-c
     cmd += '--max-surge-upgrade 1 --max-unavailable-upgrade 0 --enable-managed-prometheus --enable-shielded-nodes --node-locations "us-central1-c" '
 
     # Second Node pool for application pods.
-    cmd += '&& gcloud beta container --project "{}" node-pools create "app-pool" --cluster "{}" --zone "{}" --machine-type "n1-standard-1" --image-type "COS_CONTAINERD" --disk-type "pd-standard" --disk-size "100" '.format(project, cluster, zone)
+    cmd += '&& gcloud beta container --project "{}" node-pools create "app-pool" --cluster "{}" --zone "{}" --machine-type "n1-standard-{}" --image-type "COS_CONTAINERD" --disk-type "pd-standard" --disk-size "100" '.format(project, cluster, zone, pods_per_node)
     cmd += '--metadata disable-legacy-endpoints=true --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring",'
     cmd += '"https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" '
-    cmd += '--num-nodes "3" --enable-autoupgrade --enable-autorepair --max-surge-upgrade 1 --max-unavailable-upgrade 0 --max-pods-per-node "110" --node-locations "us-central1-c"'
+    cmd += '--num-nodes "{}" --enable-autoupgrade --enable-autorepair --max-surge-upgrade 1 --max-unavailable-upgrade 0 --max-pods-per-node "110" --node-locations "us-central1-c"'.format(num_application_nodes)
 
     # Run cluster creation.
     os.system(cmd)

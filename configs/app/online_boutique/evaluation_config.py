@@ -33,5 +33,10 @@ eval_cfg = EvalConfig(
                             duration=60,
                             num_iters=15,
                             wait_time=120,
-                            reset_cluster=False
+                            reset_cluster=False,
+
+                            deployment_path = 'microservices/online_boutique/deployments.yaml',
+                            gateway_path = 'microservices/online_boutique/gateway.yaml',
+                            pods_per_node = 1,
+                            cluster_type = 'default',                            
                         )

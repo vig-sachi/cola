@@ -21,4 +21,9 @@ cfg = Config(
                 cluster_name='cola-test',
                 project_name='vig-cloud',
                 zone='us-central1-c',
+
+                deployment_path = 'microservices/hello_world/deployments.yaml',
+                gateway_path = 'microservices/hello_world/gateway.yaml',
+                pods_per_node = 1,
+                cluster_type = 'default',
            )

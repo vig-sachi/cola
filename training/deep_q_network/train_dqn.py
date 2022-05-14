@@ -82,7 +82,7 @@ class DQNTrainer(object):
                                                               self.train_config.max_nodes))
 
         # Launch the application, wait for pods to come online.
-        launch_application(app_name=self.config.name)
+        launch_application(config=self.config)
         time.sleep(90)
 
         # Get model training args.

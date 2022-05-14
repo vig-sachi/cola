@@ -98,8 +98,8 @@ class BanditTrainer(object):
         logger.info('Disabled node pool autoscaling for {}'.format(self.train_config.node_pool))
 
         # Launch the application.
-        #launch_application(app_name=self.config.name)
-        time.sleep(180)
+        launch_application(config=self.config)
+        time.sleep(90)
 
     def run(self):
 
@@ -280,16 +280,12 @@ class BanditTrainer(object):
             util_df = kube_utils.get_pod_statistics(self.config.cpu_requests, self.config.mem_requests)
 
             # Exclude recently searched services
-            #embed()
             util_df = util_df[util_df[3].isin(self.config.deployments.keys())]
             util_df = util_df[~util_df[3].isin(self.search_history)]
 
             # Select service based on highest cpu usage increase.
             max_serv_idx = np.argmax(util_df.sort_values([3])[1] - util_df_pre.sort_values([3])[1])
             service =  util_df.sort_values([3])[3].iloc[max_serv_idx]
-
-            # Select service with highest cpu utilization that we have not searched recently.
-            #service = util_df.sort_values([1]).iloc[-1][3]
 
         if strategy == 'mem':
             # Choose next service by highest cpu utilization for the current policy na dload.
@@ -308,7 +304,6 @@ class BanditTrainer(object):
             util_df = kube_utils.get_pod_statistics(self.config.cpu_requests, self.config.mem_requests)
 
             # Exclude recently searched services
-            #embed()
             util_df = util_df[util_df[3].isin(self.config.deployments.keys())]
             util_df = util_df[~util_df[3].isin(self.search_history)]
 

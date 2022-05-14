@@ -44,7 +44,7 @@ class FixedRateWorkloadBandit(object):
                                                   node_pool=self.eval_config.node_pool)
 
         self.reset_node_pool()
-        launch_application(app_name=self.eval_config.application)
+        launch_application(config=self.eval_config)
         time.sleep(120)
 
         # Setup bandit autoscaler and run autoscaler in background process.

@@ -85,8 +85,8 @@ class CherryPickTrainer(object):
                                                               self.train_config.max_nodes))
 
         # Launch the application.
-        #launch_application(app_name=self.config.name)
-
+        launch_application(config=self.config)
+        time.sleep(90)
 
     def run(self):
 
