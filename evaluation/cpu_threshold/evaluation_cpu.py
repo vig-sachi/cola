@@ -3,6 +3,7 @@ import sys
 sys.path.insert(1, '..')
 
 import time
+import math
 import pickle
 import matplotlib.pyplot as plt
 
@@ -41,7 +42,7 @@ class FixedRateWorkloadCPU(object):
                                        project=self.eval_config.project_name, 
                                        zone=self.eval_config.zone, 
                                        node_pool=self.eval_config.node_pool, 
-                                       num_nodes=len(self.eval_config.services))
+                                       num_nodes=math.ceil(len(self.eval_config.services) / self.eval_config.pods_per_node))
 
         cluster_utils.enable_node_pool_autoscaling(cluster=self.eval_config.cluster_name, 
                                               project=self.eval_config.project_name, 
