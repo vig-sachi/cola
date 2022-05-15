@@ -5,7 +5,7 @@ import time
 
 sys.path.insert(0, os.getcwd())
 
-from utils.kube import get_current_deployments
+from utils.kube import get_current_deployments, get_current_nodes
 
 # File name, remove the old log on start
 fname = 'service_replicas_count.json'
@@ -20,10 +20,12 @@ def run():
     while True:
         try:
             deployments = get_current_deployments()
-            res_dict = {   
+            nodes = get_current_nodes()
+            res_dict = {
                         'deployments': deployments,
                         'services': list(deployments.keys()), 
                         'tot_replicas': sum(deployments.values()), 
+                        'nodes': nodes,
                         'time': time.time(),
                         }
             with open(fname, 'a+') as obj:

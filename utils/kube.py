@@ -75,6 +75,20 @@ def get_current_deployments():
 
     return current_deployments
 
+def get_current_nodes():
+    """
+    Get number of available nodes across the application node pool.
+
+    Returns:
+        list: Node types used by the application node pool.
+    """
+    
+    # Get all deployments.
+    nodes = json.loads(os.popen('kubectl get node -o json').read())
+    node_types = [node['metadata']['labels']['beta.kubernetes.io/instance-type'] for node in nodes['items'] if node['metadata']['labels']['cloud.google.com/gke-nodepool'] == 'app-pool']
+
+    return node_types
+
 
 def measure_num_replicas(fname = 'service_replicas_count.json', num_intervals = 10000000, interval_length = 10):
     """
