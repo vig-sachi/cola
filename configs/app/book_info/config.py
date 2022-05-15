@@ -7,6 +7,7 @@ from utils.config import Config
 # Book Info Application
 cfg = Config(
                 name='book_info',
+                application='book_info',
                 services=[
                             'details', 
                             'productpage', 

@@ -44,12 +44,12 @@ def launch_application(config, delete_existing_apps=True):
     ingress_host = os.popen("kubectl -n default get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}'").read()
 
     # Create users for train ticket application.
-    if config.name == 'trainticket':
+    if config.application == 'trainticket':
         time.sleep(60)
         os.system('locust -f load_generator/locustfiles/trainticket/create_users.py --headless -u 100 -r 10 --host http://{ingress_host} --run-time 240s'.format(ingress_host=ingress_host))
         os.system('locust -f load_generator/locustfiles/trainticket/create_users.py --headless -u 100 -r 10 --host http://{ingress_host} --run-time 240s'.format(ingress_host=ingress_host))
 
-    print("Host = {ingress_host}".format(ingress_host=ingress_host+SUFFIXES[config.name]))
+    print("Host = {ingress_host}".format(ingress_host=ingress_host+SUFFIXES[config.application]))
     return
 
 def delete_applications():

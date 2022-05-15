@@ -1,7 +1,7 @@
 import copy
 
 class Config(object):
-    def __init__(self, name, services, deployments, cpu_requests, mem_requests, host, cluster_name, 
+    def __init__(self, name, application, services, deployments, cpu_requests, mem_requests, host, cluster_name, 
                        project_name, zone, autoscale_path='', deployment_path='', gateway_path='', 
                        pods_per_node=1, cluster_type='default'):
         """
@@ -18,6 +18,7 @@ class Config(object):
             autoscale_path (str, optional): Path for custom autoscalers. Defaults to ''.
         """
         self.name = name
+        self.application = application
         self.services = services
         self.deployments = deployments
         self.cpu_requests = cpu_requests

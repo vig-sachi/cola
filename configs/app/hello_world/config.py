@@ -8,6 +8,7 @@ from utils.config import Config, EvalConfig, TrainConfig
 # Hello World Application
 cfg = Config(
                 name='hello_world',
+                application='hello_world',
                 services=[
                             'helloworld', 
                         ],

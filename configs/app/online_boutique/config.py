@@ -7,6 +7,7 @@ from utils.config import Config
 # Online Boutique Application
 cfg = Config(
                 name='online_boutique',
+                application='online_boutique',
                 services=[
                             'frontend', 
                             'productcatalogservice', 
