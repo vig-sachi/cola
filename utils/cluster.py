@@ -57,9 +57,22 @@ def create_cluster(project='vig-cloud', cluster='cola-test', zone='us-central1-c
     # Run cluster creation.
     os.system(cmd)
 
-
     return
 
+
+def create_autopilot_cluster(project='vig-cloud', cluster='cola-test', zone='us-central1-c'):
+
+    # Get region from zone.
+    region = '-'.join(zone.split('-')[:-1])
+
+    cmd = 'gcloud container --project "{}" clusters create-auto "{}" --region "{}" '.format(project, cluster, region)
+    cmd += '--release-channel "regular" --network "projects/{}/global/networks/default" '.format(project)
+    cmd += '--subnetwork "projects/{}/regions/{}/subnetworks/default" --cluster-ipv4-cidr "/17" --services-ipv4-cidr "/22"'.format(project, region)
+
+    # Run cluster creation
+    os.system(cmd)
+
+    return
 
 def enable_istio_cluster(project='vig-cloud', cluster='cola-test', zone='us-central1-c', profile='demo'):
     """

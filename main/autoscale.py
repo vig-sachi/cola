@@ -29,13 +29,21 @@ class Autoscaler(object):
         cluster.set_project(self.config.project_name)
 
         # Create the cluster.
-        cluster.create_cluster(
-                                project=self.config.project_name, 
-                                cluster=self.config.cluster_name, 
-                                zone=self.config.zone,
-                                num_services=len(self.config.services),
-                                pods_per_node=self.config.pods_per_node,
-                                )
+        if self.config.cluster_type == 'default':
+            cluster.create_cluster(
+                                    project=self.config.project_name, 
+                                    cluster=self.config.cluster_name, 
+                                    zone=self.config.zone,
+                                    num_services=len(self.config.services),
+                                    pods_per_node=self.config.pods_per_node,
+                                    )
+        elif self.config.cluster_type == 'autopilot':
+            cluster.create_autopilot_cluster(
+                                    project=self.config.project_name, 
+                                    cluster=self.config.cluster_name, 
+                                    zone=self.config.zone,
+                                    )
+
 
         # Install Istio on cluster.
         cluster.enable_istio_cluster(self.config.project_name, self.config.cluster_name, self.config.zone)
