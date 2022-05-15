@@ -50,7 +50,7 @@ eval_cfg2 = EvalConfig(
 
                             host='',
                             locustfile='microservices/book_info/workloads/default.py',
-                            cluster_name='cola-test-bi',
+                            cluster_name='cola-test-bi-2',
                             project_name='vig-cloud',
                             zone='us-central1-c',
                             node_pool='app-pool',
@@ -83,7 +83,7 @@ eval_cfg4 = EvalConfig(
 
                             host='',
                             locustfile='microservices/book_info/workloads/default.py',
-                            cluster_name='cola-test-bi',
+                            cluster_name='cola-test-bi-4',
                             project_name='vig-cloud',
                             zone='us-central1-c',
                             node_pool='app-pool',

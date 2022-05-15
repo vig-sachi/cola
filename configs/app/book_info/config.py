@@ -54,7 +54,7 @@ cfg2 = Config(
                 mem_requests=1900,
                 host='',
                 autoscale_path='',
-                cluster_name='cola-test-bi',
+                cluster_name='cola-test-bi-2',
                 project_name='vig-cloud',
                 zone='us-central1-c',
                 
@@ -83,12 +83,12 @@ cfg4 = Config(
                 mem_requests=1900,
                 host='',
                 autoscale_path='',
-                cluster_name='cola-test-bi',
+                cluster_name='cola-test-bi-4',
                 project_name='vig-cloud',
                 zone='us-central1-c',
                 
                 deployment_path = 'microservices/book_info/deployments.yaml',
                 gateway_path = 'microservices/book_info/gateway.yaml',
-                pods_per_node = 2,
+                pods_per_node = 4,
                 cluster_type = 'default',
             )

@@ -189,5 +189,5 @@ def delete_cluster(cluster, project, zone):
         project (str, optional): Name of the project which hosts the cluster. Defaults to 'vig-cloud'.
         zone (str, optional): Zone in which cluster is located. Defaults to 'us-central1-c'.
     """
-    os.system('gcloud container clusters delete {cluster} --zone {zone} --project {project}'.format(cluster=cluster, zone=zone, project=project))
+    os.system('gcloud container clusters delete {cluster} --zone {zone} --project {project} --quiet'.format(cluster=cluster, zone=zone, project=project))
     return
