@@ -57,6 +57,10 @@ def create_cluster(project='vig-cloud', cluster='cola-test', zone='us-central1-c
     # Run cluster creation.
     os.system(cmd)
 
+    # Optimize utilization for application node pool autoscalers.
+    cmd = 'gcloud container clusters update {}  --autoscaling-profile optimize-utilization --project {} --zone {}'.format(cluster, project, zone)
+    os.system(cmd)
+
     return
 
 

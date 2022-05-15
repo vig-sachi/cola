@@ -57,6 +57,8 @@ metadata:
   labels:
     app: details
     version: v1
+  annotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
 spec:
   replicas: 1
   selector:
@@ -122,6 +124,8 @@ metadata:
   labels:
     app: ratings
     version: v1
+  annotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
 spec:
   replicas: 1
   selector:
@@ -187,6 +191,8 @@ metadata:
   labels:
     app: reviews
     version: v1
+  annotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
 spec:
   replicas: 1
   selector:
@@ -266,6 +272,8 @@ metadata:
   labels:
     app: productpage
     version: v1
+  annotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
 spec:
   replicas: 1
   selector:
