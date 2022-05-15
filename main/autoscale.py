@@ -137,3 +137,10 @@ class Autoscaler(object):
                 os.makedirs(path)
 
         return
+
+    def delete_cluster(self):
+        cluster.delete_cluster(
+                                project=self.config.project_name, 
+                                cluster=self.config.cluster_name, 
+                                zone=self.config.zone)
+        return

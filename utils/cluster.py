@@ -178,3 +178,16 @@ def disable_node_pool_autoscaling(cluster='cola2', project='vig-cloud', zone='us
     """
     os.system('gcloud container clusters update {cluster} --no-enable-autoscaling --project {project} --zone {zone} --node-pool {node_pool}'.format(cluster=cluster, zone=zone, project=project, node_pool=node_pool))
     return
+
+
+def delete_cluster(cluster, project, zone):
+    """
+    Authenticate to a GKE cluster.
+
+    Args:
+        cluster (str, optional): Name of the GKE cluster. Defaults to 'cola2'.
+        project (str, optional): Name of the project which hosts the cluster. Defaults to 'vig-cloud'.
+        zone (str, optional): Zone in which cluster is located. Defaults to 'us-central1-c'.
+    """
+    os.system('gcloud container clusters delete {cluster} --zone {zone} --project {project}'.format(cluster=cluster, zone=zone, project=project))
+    return

@@ -41,6 +41,72 @@ eval_cfg = EvalConfig(
 
 
 
+eval_cfg2 = EvalConfig(
+                            name='fixed_rate_insample_colocate2',
+                            services=cfg.services, 
+                            deployments=cfg.deployments,
+                            cpu_requests=500,
+                            mem_requests=1900,
+
+                            host='',
+                            locustfile='microservices/book_info/workloads/default.py',
+                            cluster_name='cola-test-bi',
+                            project_name='vig-cloud',
+                            zone='us-central1-c',
+                            node_pool='app-pool',
+                            min_nodes=1,
+                            max_nodes=100,
+
+                            application='book_info',
+                            rps_rates=[300,400,700,800], 
+                            cpu_policies=[30,50,70],
+                            bandit_policy='50_ms',
+                            train_config_path='/home/packard2700/autoscale-bandit/models/bookinfo/bandit-50',
+                            pod_filter='productpage',
+                            duration=60,
+                            num_iters=25,
+                            wait_time=120,
+                            reset_cluster=False,
+                            
+                            deployment_path = 'microservices/book_info/deployments.yaml',
+                            gateway_path = 'microservices/book_info/gateway.yaml',
+                            pods_per_node = 2,
+                            cluster_type = 'default',
+                        )
+
+eval_cfg4 = EvalConfig(
+                            name='fixed_rate_insample_colocate2',
+                            services=cfg.services, 
+                            deployments=cfg.deployments,
+                            cpu_requests=500,
+                            mem_requests=1900,
+
+                            host='',
+                            locustfile='microservices/book_info/workloads/default.py',
+                            cluster_name='cola-test-bi',
+                            project_name='vig-cloud',
+                            zone='us-central1-c',
+                            node_pool='app-pool',
+                            min_nodes=1,
+                            max_nodes=100,
+
+                            application='book_info',
+                            rps_rates=[300,400,700,800], 
+                            cpu_policies=[30,50,70],
+                            bandit_policy='50_ms',
+                            train_config_path='/home/packard2700/autoscale-bandit/models/bookinfo/bandit-50',
+                            pod_filter='productpage',
+                            duration=60,
+                            num_iters=25,
+                            wait_time=120,
+                            reset_cluster=False,
+                            
+                            deployment_path = 'microservices/book_info/deployments.yaml',
+                            gateway_path = 'microservices/book_info/gateway.yaml',
+                            pods_per_node = 4,
+                            cluster_type = 'default',
+                        )
+
 eval_cfg_two_min = EvalConfig(
                             name='fixed_rate_insample_colocate_twomin',
                             services=cfg.services,
